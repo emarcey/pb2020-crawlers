@@ -13,13 +13,18 @@ MONGO_USERNAME = getenv("MONGO_USERNAME")
 MONGO_PASSWORD = getenv("MONGO_PASSWORD")
 MONGO_DBNAME = getenv("MONGO_DBNAME")
 
-# Reddit API creds
+# Reddit configs
 REDDIT_USER = getenv("REDDIT_USER")
 REDDIT_CLIENT_ID = getenv("REDDIT_CLIENT_ID")
 REDDIT_SECRET = getenv("REDDIT_SECRET")
 REDDIT_DUMMY_REDIRECT = "http://localhost:8080"
 REDDIT_USER_AGENT = "script for /r/2020PoliceBrutality"
-SUBREDDITS = ["2020PoliceBrutality", "BrutalityArchive"]
+SUBREDDITS = ["2020PoliceBrutality", "BrutalityArchive", "news", "politics", "publicfreakout"]
+EXPLICIT_SUBREDDITS = {"2020policebrutality", "brutalityarchive"}
+REDDIT_KEYWORDS = {"police", "cop", "officer"}
+
+REDDIT_KEYWORD_REGEX = re.compile(r"(police|cop|officer)")
+
 REDDIT_SIZE = 5
 
 
