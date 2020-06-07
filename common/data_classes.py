@@ -14,4 +14,4 @@ class RawSubmission:
     submission_body: str
     id_submitter: str
     submission_url: str
-    submission_media_urls: str
+    submission_media_url: str
