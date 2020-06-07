@@ -9,6 +9,4 @@ COPY ./. .
 
 RUN chmod 700 /rss_feeds/content_reader.py
 
-# ENTRYPOINT ["/bin/sh"]
-ENTRYPOINT ["python", "/rss_feeds/content_reader.py"]
-# CMD /bin/sh -c "python content_reader.py"
+CMD ["python", "/rss_feeds/content_reader.py"]

@@ -23,7 +23,7 @@ SUBREDDITS = ["2020PoliceBrutality", "BrutalityArchive", "news", "politics", "pu
 EXPLICIT_SUBREDDITS = {"2020policebrutality", "brutalityarchive"}
 REDDIT_KEYWORDS = {"police", "cop", "officer"}
 
-REDDIT_KEYWORD_REGEX = re.compile(r"(police|cop|officer)")
+REDDIT_KEYWORD_REGEX = re.compile(r".*(police|cop|officer).*")
 
 REDDIT_SIZE = 5
 

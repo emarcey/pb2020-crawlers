@@ -17,8 +17,13 @@ run:
 	-v=$(CURDIR):/rss_feeds \
 	-e READER_MODE=$(READER_MODE) \
 	-e JOB_SLEEP_TIME_SECONDS=$(JOB_SLEEP_TIME_SECONDS) \
-	$(IMAGE_NAME)
+	$(IMAGE_NAME) \
+	$(cmd)
 
 run_reddit:
 	$(MAKE) build
 	$(MAKE) run READER_MODE=$(READER_MODE_REDDIT)
+
+unit:
+	$(MAKE) build
+	$(MAKE) run cmd="python -m pytest ./tests/unit/"
