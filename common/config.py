@@ -33,3 +33,6 @@ if not JOB_SLEEP_TIME_SECONDS:
 
 
 IMAGE_FORMATS = {"png", "jpg", "jpeg"}
+
+
+LAST_RUN_FILENAME = "job_last_run.json"

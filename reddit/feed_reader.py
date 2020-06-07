@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime
 from praw.models import Submission as RedditSubmission
-from typing import List
+from typing import Generator, List
 
 from clients.reddit_client import get_new_posts, make_new_reddit_client
 from common.config import SUBREDDITS
@@ -19,11 +19,14 @@ def run_reddit_rss_feed():
     print("Converting Reddit posts.")
     raw_posts = convert_reddit_submission(reddit_posts)
 
-    print("writing to test_file")
-    write_raw_submissions_to_csv("test_file.csv", raw_posts)
+    for raw_post in raw_posts:
+        print(f"raw_post: {raw_post}")
+    # write_raw_submissions_to_csv("test_file.csv", raw_posts)
 
 
-def convert_reddit_submission(reddit_submissions: List[RedditSubmission]) -> RawSubmission:
+def convert_reddit_submission(
+    reddit_submissions: Generator[RedditSubmission, None, None]
+) -> Generator[RawSubmission, None, None]:
     raw_submissions: List[RawSubmission] = []
 
     for reddit_submission in reddit_submissions:
@@ -35,18 +38,21 @@ def convert_reddit_submission(reddit_submissions: List[RedditSubmission]) -> Raw
         if url_is_image(clean_media_url):
             print(f"Skipping image post with id: {reddit_submission.id} and media url {clean_url}")
             continue
-        raw_submissions.append(
-            RawSubmission(
-                data_source=DataSource.reddit,
-                id_source=reddit_submission.id,
-                submission_title=reddit_submission.title,
-                submission_datetime_utc=datetime.utcfromtimestamp(int(reddit_submission.created_utc)),
-                submission_community=reddit_submission.subreddit.display_name,
-                submission_url="reddit.com" + reddit_submission.permalink,
-                submission_media_url=clean_media_url,
-                submission_body="",
-                id_submitter=reddit_submission.author.id,
-            )
+
+        if not hasattr(reddit_submission, "media") or reddit_submission.media is None:
+            print(f"Skipping post without media with id: {reddit_submission.id}")
+            continue
+
+        yield RawSubmission(
+            data_source=DataSource.reddit,
+            id_source=reddit_submission.id,
+            submission_title=reddit_submission.title,
+            submission_datetime_utc=datetime.utcfromtimestamp(int(reddit_submission.created_utc)),
+            submission_community=reddit_submission.subreddit.display_name,
+            submission_url="reddit.com" + reddit_submission.permalink,
+            submission_media_url=clean_media_url,
+            submission_body="",
+            id_submitter=reddit_submission.author.id,
         )
     return raw_submissions
 
