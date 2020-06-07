@@ -2,7 +2,7 @@ import os
 import time
 
 from common.config import JOB_SLEEP_TIME_SECONDS, READER_MODE
-from reddit_rss.feed_reader import run_reddit_rss_feed
+from reddit.feed_reader import run_reddit_rss_feed
 
 
 if __name__ == "__main__":

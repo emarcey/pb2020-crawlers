@@ -11,12 +11,12 @@ from common.utils import clean_url, url_is_image
 
 
 def run_reddit_rss_feed():
-    print(f"Initializing reddit client.")
+    print("Initializing reddit client.")
     reddit_client = make_new_reddit_client()
 
     print(f"Fetching posts from Reddit.")
     reddit_posts = get_new_posts(reddit_client, SUBREDDITS, 25)
-    print(f"Converting Reddit posts. {reddit_posts}")
+    print("Converting Reddit posts.")
     raw_posts = convert_reddit_submission(reddit_posts)
 
     print("writing to test_file")
@@ -71,7 +71,7 @@ def write_raw_submissions_to_csv(target_filename: str, raw_submissions: List[Raw
         for raw_submission in raw_submissions:
             csvwriter.writerow(
                 [
-                    raw_submission.data_source,
+                    raw_submission.data_source.value,
                     raw_submission.id_source,
                     raw_submission.submission_title,
                     raw_submission.submission_datetime_utc,
