@@ -25,9 +25,6 @@ REDDIT_KEYWORDS = {"police", "cop", "officer"}
 
 REDDIT_KEYWORD_REGEX = re.compile(r".*(police|cop|officer).*")
 
-REDDIT_SIZE = 5
-
-
 READER_MODE = getenv("READER_MODE")
 if not READER_MODE:
     raise ValueError(f"READER_MODE not set.")
