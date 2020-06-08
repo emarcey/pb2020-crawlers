@@ -19,7 +19,7 @@ REDDIT_CLIENT_ID = getenv("REDDIT_CLIENT_ID")
 REDDIT_SECRET = getenv("REDDIT_SECRET")
 REDDIT_DUMMY_REDIRECT = "http://localhost:8080"
 REDDIT_USER_AGENT = "script for /r/2020PoliceBrutality"
-SUBREDDITS = ["2020PoliceBrutality", "BrutalityArchive", "news", "politics", "publicfreakout"]
+SUBREDDITS = ["2020PoliceBrutality", "BrutalityArchive", "news", "politics", "worldpolitics", "publicfreakout"]
 EXPLICIT_SUBREDDITS = {"2020policebrutality", "brutalityarchive"}
 REDDIT_KEYWORDS = {"police", "cop", "officer"}
 
