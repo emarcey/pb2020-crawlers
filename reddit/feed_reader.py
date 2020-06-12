@@ -3,8 +3,8 @@ from datetime import datetime
 from praw.models import Submission as RedditSubmission
 from typing import Generator, List
 
-from clients.reddit_client import get_new_posts, make_new_reddit_client
-from common.config import EXPLICIT_SUBREDDITS, SUBREDDITS
+from clients.laravel_client import bulk_upload_submissions
+from common.config import EXPLICIT_SUBREDDITS, REDDIT_LARAVEL_API_KEY, SUBREDDITS
 from common.data_classes import RawSubmission
 from common.enums import DataSource
 from common.utils import clean_url, reddit_post_is_relevant
@@ -20,8 +20,8 @@ def run_reddit_rss_feed():
     raw_posts = convert_reddit_submission(reddit_posts)
 
     for raw_post in raw_posts:
-        print(f"raw_post: {raw_post}")
-    # write_raw_submissions_to_csv("test_file.csv", raw_posts)
+        print(f"Writing reddit post with id {id_source} to Laravel")
+        bulk_upload_submissions([raw_post], REDDIT_LARAVEL_API_KEY)
 
 
 def convert_reddit_submission(

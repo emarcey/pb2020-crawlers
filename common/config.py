@@ -44,5 +44,10 @@ if not JOB_SLEEP_TIME_SECONDS:
 
 IMAGE_FORMATS = {"png", "jpg", "jpeg"}
 
+REDDIT_LARAVEL_API_KEY = getenv("REDDIT_LARAVEL_API_KEY")
+LARAVEL_HOST = getenv("LARAVEL_HOST")
+LARAVEL_ENDPOINT = "api/link-submission"
+
+DATE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 LAST_RUN_FILENAME = "job_last_run.json"
