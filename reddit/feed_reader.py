@@ -4,7 +4,7 @@ from praw.models import Submission as RedditSubmission
 from typing import Generator, List
 
 from clients.laravel_client import bulk_upload_submissions
-from common.reddit_client import make_new_reddit_client
+from clients.reddit_client import make_new_reddit_client
 from common.config import EXPLICIT_SUBREDDITS, REDDIT_LARAVEL_API_KEY, SUBREDDITS
 from common.data_classes import RawSubmission
 from common.enums import DataSource
