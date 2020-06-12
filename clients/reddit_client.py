@@ -22,6 +22,6 @@ def make_new_reddit_client() -> Reddit:
     )
 
 
-def get_new_posts(reddit_client: Reddit, subreddits: List[str], limit: int = 100) -> Generator[Submission, None, None]:
+def stream_posts(reddit_client: Reddit, subreddits: List[str], limit: int = 100) -> Generator[Submission, None, None]:
     for submission in reddit_client.subreddit("+".join(SUBREDDITS)).stream.submissions():
         yield submission

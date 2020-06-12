@@ -2,14 +2,14 @@ import os
 import time
 
 from common.config import JOB_SLEEP_TIME_SECONDS, READER_MODE
-from reddit.feed_reader import run_reddit_rss_feed
+from reddit.feed_reader import run_reddit_feed
 
 
 if __name__ == "__main__":
     try:
         while True:
             if READER_MODE == "reddit":
-                run_reddit_rss_feed()
+                run_reddit_feed()
             else:
                 raise ValueError(f"READER_MODE {READER_MODE} not supported")
             print(f"Job complete. Sleeping for {JOB_SLEEP_TIME_SECONDS} seconds.")
