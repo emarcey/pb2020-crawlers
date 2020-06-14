@@ -4,7 +4,7 @@ from praw.models import Submission as RedditSubmission
 from typing import Generator, List
 
 from clients.laravel_client import bulk_upload_submissions
-from clients.reddit_client import make_new_reddit_client
+from clients.reddit_client import make_new_reddit_client, get_new_posts
 from common.config import EXPLICIT_SUBREDDITS, REDDIT_LARAVEL_API_KEY, SUBREDDITS
 from common.data_classes import RawSubmission
 from common.enums import DataSource
@@ -21,7 +21,7 @@ def run_reddit_rss_feed():
     raw_posts = convert_reddit_submission(reddit_posts)
 
     for raw_post in raw_posts:
-        print(f"Writing reddit post with id {id_source} to Laravel")
+        print(f"Writing reddit post with id {raw_post.id_source} to Laravel")
         bulk_upload_submissions([raw_post], REDDIT_LARAVEL_API_KEY)
 
 
@@ -38,7 +38,9 @@ def convert_reddit_submission(
             data_source=DataSource.reddit,
             id_source=reddit_submission.id,
             submission_title=reddit_submission.title,
-            submission_datetime_utc=datetime.utcfromtimestamp(int(reddit_submission.created_utc)),
+            submission_datetime_utc=datetime.utcfromtimestamp(
+                int(reddit_submission.created_utc)
+            ),
             submission_community=reddit_submission.subreddit.display_name,
             submission_url="reddit.com" + reddit_submission.permalink,
             submission_media_url=clean_url(reddit_submission.url),
@@ -48,7 +50,9 @@ def convert_reddit_submission(
     return raw_submissions
 
 
-def write_raw_submissions_to_csv(target_filename: str, raw_submissions: List[RawSubmission]) -> None:
+def write_raw_submissions_to_csv(
+    target_filename: str, raw_submissions: List[RawSubmission]
+) -> None:
     headers = [
         "data_source",
         "id_source",
@@ -62,7 +66,9 @@ def write_raw_submissions_to_csv(target_filename: str, raw_submissions: List[Raw
     ]
 
     with open(target_filename, "w") as csvfile:
-        csvwriter = csv.writer(csvfile, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csvwriter = csv.writer(
+            csvfile, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
+        )
         csvwriter.writerow(headers)
 
         for raw_submission in raw_submissions:
