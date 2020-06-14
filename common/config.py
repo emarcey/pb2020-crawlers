@@ -37,9 +37,7 @@ READER_MODE = getenv("READER_MODE")
 if not READER_MODE:
     raise ValueError(f"READER_MODE not set.")
 
-JOB_SLEEP_TIME_SECONDS = int(getenv("JOB_SLEEP_TIME_SECONDS"))
-if not JOB_SLEEP_TIME_SECONDS:
-    JOB_SLEEP_TIME_SECONDS = 30
+JOB_SLEEP_TIME_SECONDS = int(getenv("JOB_SLEEP_TIME_SECONDS", 30))
 
 
 IMAGE_FORMATS = {"png", "jpg", "jpeg"}
