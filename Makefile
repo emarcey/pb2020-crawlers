@@ -5,6 +5,12 @@ READER_MODE_REDDIT = "reddit"
 
 JOB_SLEEP_TIME_SECONDS="30"
 
+REGISTRY_NAME=$(shell grep REGISTRY_NAME .env | cut -d "=" -f2)
+IMAGE_PATH = /pb2020/crawlers
+
+azure_login:
+	az acr login --name $(REGISTRY_NAME)
+
 
 build:
 	docker build --rm \
@@ -27,3 +33,8 @@ run_reddit:
 unit:
 	$(MAKE) build
 	$(MAKE) run cmd="python -m pytest ./tests/unit/"
+
+# Pass in tag an manually increment
+push:
+	$(MAKE) build IMAGE_NAME=$(REGISTRY_NAME)$(IMAGE_PATH):$(TAG)
+	docker push $(REGISTRY_NAME)$(IMAGE_PATH):$(TAG)
