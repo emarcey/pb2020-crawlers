@@ -5,8 +5,8 @@ from praw.models import Submission as RedditSubmission
 from typing import Generator, List
 
 from clients.laravel_client import bulk_upload_submissions
-from clients.reddit_client import make_new_reddit_client, get_new_posts
-from common.config import EXPLICIT_SUBREDDITS, REDDIT_LARAVEL_API_KEY, SUBREDDITS
+from clients.reddit_client import make_new_reddit_client, stream_posts
+from common.config import EXPLICIT_SUBREDDITS, READER_MODE, REDDIT_LARAVEL_API_KEY, SUBREDDITS
 from common.data_classes import RawSubmission
 from common.enums import DataSource
 from common.utils import clean_url, reddit_post_is_relevant
@@ -14,18 +14,18 @@ from common.utils import clean_url, reddit_post_is_relevant
 logger = logging.getLogger(__name__)
 
 
-def run_reddit_rss_feed():
+def run_reddit_feed():
     logger.info("Initializing reddit client.")
     reddit_client = make_new_reddit_client()
 
     logger.info(f"Fetching posts from Reddit.")
-    reddit_posts = get_new_posts(reddit_client, SUBREDDITS, 25)
+    reddit_posts = stream_posts(reddit_client, SUBREDDITS, READER_MODE)
     logger.info("Converting Reddit posts.")
     raw_posts = convert_reddit_submission(reddit_posts)
 
     for raw_post in raw_posts:
         logger.info(f"Writing reddit post with id {raw_post.id_source} to Laravel")
-        bulk_upload_submissions([raw_post], REDDIT_LARAVEL_API_KEY)
+        bulk_upload_submissions([raw_post], REDDIT_LARAVEL_API_KEY, READER_MODE)
 
 
 def convert_reddit_submission(
@@ -41,9 +41,7 @@ def convert_reddit_submission(
             data_source=DataSource.reddit,
             id_source=reddit_submission.id,
             submission_title=reddit_submission.title,
-            submission_datetime_utc=datetime.utcfromtimestamp(
-                int(reddit_submission.created_utc)
-            ),
+            submission_datetime_utc=datetime.utcfromtimestamp(int(reddit_submission.created_utc)),
             submission_community=reddit_submission.subreddit.display_name,
             submission_url="reddit.com" + reddit_submission.permalink,
             submission_media_url=clean_url(reddit_submission.url),
@@ -53,9 +51,7 @@ def convert_reddit_submission(
     return raw_submissions
 
 
-def write_raw_submissions_to_csv(
-    target_filename: str, raw_submissions: List[RawSubmission]
-) -> None:
+def write_raw_submissions_to_csv(target_filename: str, raw_submissions: List[RawSubmission]) -> None:
     headers = [
         "data_source",
         "id_source",
@@ -69,9 +65,7 @@ def write_raw_submissions_to_csv(
     ]
 
     with open(target_filename, "w") as csvfile:
-        csvwriter = csv.writer(
-            csvfile, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
-        )
+        csvwriter = csv.writer(csvfile, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csvwriter.writerow(headers)
 
         for raw_submission in raw_submissions:

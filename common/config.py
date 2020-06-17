@@ -49,3 +49,10 @@ LARAVEL_ENDPOINT = "api/link-submission"
 DATE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 LAST_RUN_FILENAME = "job_last_run.json"
+
+DATADOG_OPTIONS = {
+    "statsd_host": getenv("DATADOG_STATSD_HOST"),
+    "statsd_port": getenv("DATADOG_STATSD_PORT") or 8125,
+    "api_key": getenv("DATADOG_API_KEY"),
+    "app_key": getenv("DATADOG_APP_KEY"),
+}
