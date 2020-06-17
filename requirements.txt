@@ -6,3 +6,4 @@ python-dotenv>=0.13.0,<1.0.0
 requests>=2.22.0,<3.0.0
 typing>=3.6.4,<4.0.0
 pytest>=3.6.3,<4.0.0
+tweepy==3.8.0

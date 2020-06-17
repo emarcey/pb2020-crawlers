@@ -1,0 +1,492 @@
+{
+  "created_at": "Wed Jun 17 16:29:00 +0000 2020",
+  "id": 1273291566208212992,
+  "id_str": "1273291566208212992",
+  "text": "RT @elisalacrimosa: but when no one’s watching...\n#acab #BLUEFALL #BlackLivesMattters https://t.co/B8wkumnSSj",
+  "truncated": false,
+  "entities": {
+    "hashtags": [
+      {
+        "text": "acab",
+        "indices": [
+          50,
+          55
+        ]
+      },
+      {
+        "text": "BLUEFALL",
+        "indices": [
+          56,
+          65
+        ]
+      },
+      {
+        "text": "BlackLivesMattters",
+        "indices": [
+          66,
+          85
+        ]
+      }
+    ],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "elisalacrimosa",
+        "name": "lacrimosa",
+        "id": 1026550541659324416,
+        "id_str": "1026550541659324416",
+        "indices": [
+          3,
+          18
+        ]
+      }
+    ],
+    "urls": [],
+    "media": [
+      {
+        "id": 1270990454365073408,
+        "id_str": "1270990454365073408",
+        "indices": [
+          86,
+          109
+        ],
+        "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+        "url": "https://t.co/B8wkumnSSj",
+        "display_url": "pic.twitter.com/B8wkumnSSj",
+        "expanded_url": "https://twitter.com/elisalacrimosa/status/1270990531137540098/video/1",
+        "type": "photo",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "large": {
+            "w": 718,
+            "h": 1280,
+            "resize": "fit"
+          },
+          "small": {
+            "w": 381,
+            "h": 680,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 673,
+            "h": 1200,
+            "resize": "fit"
+          }
+        },
+        "source_status_id": 1270990531137540098,
+        "source_status_id_str": "1270990531137540098",
+        "source_user_id": 1026550541659324416,
+        "source_user_id_str": "1026550541659324416"
+      }
+    ]
+  },
+  "extended_entities": {
+    "media": [
+      {
+        "id": 1270990454365073408,
+        "id_str": "1270990454365073408",
+        "indices": [
+          86,
+          109
+        ],
+        "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+        "url": "https://t.co/B8wkumnSSj",
+        "display_url": "pic.twitter.com/B8wkumnSSj",
+        "expanded_url": "https://twitter.com/elisalacrimosa/status/1270990531137540098/video/1",
+        "type": "video",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "large": {
+            "w": 718,
+            "h": 1280,
+            "resize": "fit"
+          },
+          "small": {
+            "w": 381,
+            "h": 680,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 673,
+            "h": 1200,
+            "resize": "fit"
+          }
+        },
+        "source_status_id": 1270990531137540098,
+        "source_status_id_str": "1270990531137540098",
+        "source_user_id": 1026550541659324416,
+        "source_user_id_str": "1026550541659324416",
+        "video_info": {
+          "aspect_ratio": [
+            359,
+            640
+          ],
+          "duration_millis": 19022,
+          "variants": [
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/pl/JvfQVB658y4lIDGs.m3u8?tag=10"
+            },
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/vid/360x640/mm3BIsZqi9o0i-Qg.mp4?tag=10"
+            },
+            {
+              "bitrate": 2176000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/vid/718x1280/y11BGFr04wKetHlb.mp4?tag=10"
+            },
+            {
+              "bitrate": 632000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/vid/320x570/bwXeHCa3emgWP_G6.mp4?tag=10"
+            }
+          ]
+        },
+        "additional_media_info": {
+          "monetizable": false,
+          "source_user": {
+            "id": 1026550541659324416,
+            "id_str": "1026550541659324416",
+            "name": "lacrimosa",
+            "screen_name": "elisalacrimosa",
+            "location": "jak najdalej od Polski",
+            "description": "nobody can help me\nexcept one person\nme\naquemini\nto chyba konto polityczne",
+            "url": null,
+            "entities": {
+              "description": {
+                "urls": []
+              }
+            },
+            "protected": false,
+            "followers_count": 77,
+            "friends_count": 185,
+            "listed_count": 1,
+            "created_at": "Mon Aug 06 19:28:16 +0000 2018",
+            "favourites_count": 11014,
+            "utc_offset": null,
+            "time_zone": null,
+            "geo_enabled": false,
+            "verified": false,
+            "statuses_count": 2319,
+            "lang": null,
+            "contributors_enabled": false,
+            "is_translator": false,
+            "is_translation_enabled": false,
+            "profile_background_color": "F5F8FA",
+            "profile_background_image_url": null,
+            "profile_background_image_url_https": null,
+            "profile_background_tile": false,
+            "profile_image_url": "http://pbs.twimg.com/profile_images/1242508563068661761/khG9PNS8_normal.jpg",
+            "profile_image_url_https": "https://pbs.twimg.com/profile_images/1242508563068661761/khG9PNS8_normal.jpg",
+            "profile_banner_url": "https://pbs.twimg.com/profile_banners/1026550541659324416/1584182107",
+            "profile_link_color": "1DA1F2",
+            "profile_sidebar_border_color": "C0DEED",
+            "profile_sidebar_fill_color": "DDEEF6",
+            "profile_text_color": "333333",
+            "profile_use_background_image": true,
+            "has_extended_profile": false,
+            "default_profile": true,
+            "default_profile_image": false,
+            "following": false,
+            "follow_request_sent": false,
+            "notifications": false,
+            "translator_type": "null"
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "iso_language_code": "en",
+    "result_type": "recent"
+  },
+  "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+  "in_reply_to_status_": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 487666584,
+    "id_str": "487666584",
+    "name": "longexman",
+    "screen_name": "alabilukman",
+    "location": "Lagos, Nigeria",
+    "description": "love is life//lover of God♥️. Animal health official.productionist😘. And Fun to be with.Balancing equation among people.",
+    "url": null,
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "protected": false,
+    "followers_count": 55,
+    "friends_count": 68,
+    "listed_count": 0,
+    "created_at": "Thu Feb 09 16:21:57 +0000 2012",
+    "favourites_count": 783,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "verified": false,
+    "statuses_count": 476,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1244318220623937542/-bJU9YTG_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1244318220623937542/-bJU9YTG_normal.jpg",
+    "profile_link_color": "1DA1F2",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "has_extended_profile": false,
+    "default_profile": true,
+    "default_profile_image": false,
+    "following": false,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "null"
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "retweeted_status": {
+    "created_at": "Thu Jun 11 08:05:31 +0000 2020",
+    "id": 1270990531137540098,
+    "id_str": "1270990531137540098",
+    "text": "but when no one’s watching...\n#acab #BLUEFALL #BlackLivesMattters https://t.co/B8wkumnSSj",
+    "truncated": false,
+    "entities": {
+      "hashtags": [
+        {
+          "text": "acab",
+          "indices": [
+            30,
+            35
+          ]
+        },
+        {
+          "text": "BLUEFALL",
+          "indices": [
+            36,
+            45
+          ]
+        },
+        {
+          "text": "BlackLivesMattters",
+          "indices": [
+            46,
+            65
+          ]
+        }
+      ],
+      "symbols": [],
+      "user_mentions": [],
+      "urls": [],
+      "media": [
+        {
+          "id": 1270990454365073408,
+          "id_str": "1270990454365073408",
+          "indices": [
+            66,
+            89
+          ],
+          "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+          "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+          "url": "https://t.co/B8wkumnSSj",
+          "display_url": "pic.twitter.com/B8wkumnSSj",
+          "expanded_url": "https://twitter.com/elisalacrimosa/status/1270990531137540098/video/1",
+          "type": "photo",
+          "sizes": {
+            "thumb": {
+              "w": 150,
+              "h": 150,
+              "resize": "crop"
+            },
+            "large": {
+              "w": 718,
+              "h": 1280,
+              "resize": "fit"
+            },
+            "small": {
+              "w": 381,
+              "h": 680,
+              "resize": "fit"
+            },
+            "medium": {
+              "w": 673,
+              "h": 1200,
+              "resize": "fit"
+            }
+          }
+        }
+      ]
+    },
+    "extended_entities": {
+      "media": [
+        {
+          "id": 1270990454365073408,
+          "id_str": "1270990454365073408",
+          "indices": [
+            66,
+            89
+          ],
+          "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+          "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1270990454365073408/pu/img/7Ekrinwx-x09WFlR.jpg",
+          "url": "https://t.co/B8wkumnSSj",
+          "display_url": "pic.twitter.com/B8wkumnSSj",
+          "expanded_url": "https://twitter.com/elisalacrimosa/status/1270990531137540098/video/1",
+          "type": "video",
+          "sizes": {
+            "thumb": {
+              "w": 150,
+              "h": 150,
+              "resize": "crop"
+            },
+            "large": {
+              "w": 718,
+              "h": 1280,
+              "resize": "fit"
+            },
+            "small": {
+              "w": 381,
+              "h": 680,
+              "resize": "fit"
+            },
+            "medium": {
+              "w": 673,
+              "h": 1200,
+              "resize": "fit"
+            }
+          },
+          "video_info": {
+            "aspect_ratio": [
+              359,
+              640
+            ],
+            "duration_millis": 19022,
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/pl/JvfQVB658y4lIDGs.m3u8?tag=10"
+              },
+              {
+                "bitrate": 832000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/vid/360x640/mm3BIsZqi9o0i-Qg.mp4?tag=10"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/vid/718x1280/y11BGFr04wKetHlb.mp4?tag=10"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1270990454365073408/pu/vid/320x570/bwXeHCa3emgWP_G6.mp4?tag=10"
+              }
+            ]
+          },
+          "additional_media_info": {
+            "monetizable": false
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "iso_language_code": "en",
+      "result_type": "recent"
+    },
+    "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
+    "user": {
+      "id": 1026550541659324416,
+      "id_str": "1026550541659324416",
+      "name": "lacrimosa",
+      "screen_name": "elisalacrimosa",
+      "location": "jak najdalej od Polski",
+      "description": "nobody can help me\nexcept one person\nme\naquemini\nto chyba konto polityczne",
+      "url": null,
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "protected": false,
+      "followers_count": 77,
+      "friends_count": 185,
+      "listed_count": 1,
+      "created_at": "Mon Aug 06 19:28:16 +0000 2018",
+      "favourites_count": 11014,
+      "utc_offset": null,
+      "time_zone": null,
+      "geo_enabled": false,
+      "verified": false,
+      "statuses_count": 2319,
+      "lang": null,
+      "contributors_enabled": false,
+      "is_translator": false,
+      "is_translation_enabled": false,
+      "profile_background_color": "F5F8FA",
+      "profile_background_image_url": null,
+      "profile_background_image_url_https": null,
+      "profile_background_tile": false,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1242508563068661761/khG9PNS8_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1242508563068661761/khG9PNS8_normal.jpg",
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/1026550541659324416/1584182107",
+      "profile_link_color": "1DA1F2",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "has_extended_profile": false,
+      "default_profile": true,
+      "default_profile_image": false,
+      "following": false,
+      "follow_request_sent": false,
+      "notifications": false,
+      "translator_type": "null"
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "is_quote_status": false,
+    "retweet_count": 6,
+    "favorite_count": 7,
+    "favorited": false,
+    "retweeted": false,
+    "possibly_sensitive": false,
+    "lang": "en"
+  },
+  "is_quote_status": false,
+  "retweet_count": 6,
+  "favorite_count": 0,
+  "favorited": false,
+  "retweeted": false,
+  "possibly_sensitive": false,
+  "lang": "en"
+}
