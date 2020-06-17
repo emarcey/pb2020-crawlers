@@ -37,9 +37,7 @@ READER_MODE = getenv("READER_MODE")
 if not READER_MODE:
     raise ValueError(f"READER_MODE not set.")
 
-JOB_SLEEP_TIME_SECONDS = int(getenv("JOB_SLEEP_TIME_SECONDS"))
-if not JOB_SLEEP_TIME_SECONDS:
-    JOB_SLEEP_TIME_SECONDS = 30
+JOB_SLEEP_TIME_SECONDS = int(getenv("JOB_SLEEP_TIME_SECONDS", 30))
 
 
 IMAGE_FORMATS = {"png", "jpg", "jpeg"}
@@ -51,3 +49,10 @@ LARAVEL_ENDPOINT = "api/link-submission"
 DATE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 LAST_RUN_FILENAME = "job_last_run.json"
+
+DATADOG_OPTIONS = {
+    "statsd_host": "127.0.0.1",
+    "statsd_port": 8125,
+    "api_key": getenv("DATADOG_API_KEY"),
+    "app_key": getenv("DATADOG_APP_KEY"),
+}

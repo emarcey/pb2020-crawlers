@@ -1,28 +1,31 @@
 import csv
+import logging
 from datetime import datetime
 from praw.models import Submission as RedditSubmission
 from typing import Generator, List
 
 from clients.laravel_client import bulk_upload_submissions
 from clients.reddit_client import make_new_reddit_client, stream_posts
-from common.config import EXPLICIT_SUBREDDITS, REDDIT_LARAVEL_API_KEY, SUBREDDITS
+from common.config import EXPLICIT_SUBREDDITS, READER_MODE, REDDIT_LARAVEL_API_KEY, SUBREDDITS
 from common.data_classes import RawSubmission
 from common.enums import DataSource
 from common.utils import clean_url, reddit_post_is_relevant
 
+logger = logging.getLogger(__name__)
+
 
 def run_reddit_feed():
-    print("Initializing reddit client.")
+    logger.info("Initializing reddit client.")
     reddit_client = make_new_reddit_client()
 
-    print(f"Fetching posts from Reddit.")
-    reddit_posts = stream_posts(reddit_client, SUBREDDITS, 25)
-    print("Converting Reddit posts.")
+    logger.info(f"Fetching posts from Reddit.")
+    reddit_posts = stream_posts(reddit_client, SUBREDDITS, READER_MODE)
+    logger.info("Converting Reddit posts.")
     raw_posts = convert_reddit_submission(reddit_posts)
 
     for raw_post in raw_posts:
-        print(f"Writing reddit post with id {raw_post.id_source} to Laravel")
-        bulk_upload_submissions([raw_post], REDDIT_LARAVEL_API_KEY)
+        logger.info(f"Writing reddit post with id {raw_post.id_source} to Laravel")
+        bulk_upload_submissions([raw_post], REDDIT_LARAVEL_API_KEY, READER_MODE)
 
 
 def convert_reddit_submission(

@@ -1,3 +1,4 @@
+from datadog import statsd
 from praw import Reddit
 from praw.models import Submission
 import requests
@@ -22,6 +23,7 @@ def make_new_reddit_client() -> Reddit:
     )
 
 
-def stream_posts(reddit_client: Reddit, subreddits: List[str], limit: int = 100) -> Generator[Submission, None, None]:
+def stream_posts(reddit_client: Reddit, subreddits: List[str], job_mode: str) -> Generator[Submission, None, None]:
     for submission in reddit_client.subreddit("+".join(SUBREDDITS)).stream.submissions():
+        statsd.increment(f"reddit.read_post", 1, tags=[f"job_mode:{job_mode}"])
         yield submission
