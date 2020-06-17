@@ -19,32 +19,32 @@ access_token_secret = ""
 QUERIES = [
     # recommended by freezman
     "#bluefall",
-    # "#PoliceBrutality",
-    # "#PoliceBrutailtyPandemic",
-    # "#Protests2020",
+    "#PoliceBrutality",
+    "#PoliceBrutailtyPandemic",
+    "#Protests2020",
     # cities by population - protests
-    # "#nycProtests",
-    # "#newyorkProtests",
-    # "#losangelesProtests",
-    # "#laprotests",
-    # "#stLouisProtests",
-    # "#stlProtests",
-    # "#philadelphiaprotests",
-    # "#phillyprotests",
-    # "#chicagoprotests",
-    # "#houstonprotests",
-    # "#pheonixProtests",
-    # "#miamiProtests",
-    # "#dcprotests",
-    # "#WashingtonDCProtest",
-    # "#seattleprotest",
-    # "#austinprotest"
-    # # found from 949mac's endpoint https://api.846policebrutality.com/api/incidents?include=evidence
-    # "#GeorgeFloyd",
-    # "#JusticeForGeorgeFloyd",
-    # "#AbolishThePolice",
-    # "#BlackLivesMatter",
-    # "tear gas",
+    "#nycProtests",
+    "#newyorkProtests",
+    "#losangelesProtests",
+    "#laprotests",
+    "#stLouisProtests",
+    "#stlProtests",
+    "#philadelphiaprotests",
+    "#phillyprotests",
+    "#chicagoprotests",
+    "#houstonprotests",
+    "#pheonixProtests",
+    "#miamiProtests",
+    "#dcprotests",
+    "#WashingtonDCProtest",
+    "#seattleprotest",
+    "#austinprotest"
+    # found from 949mac's endpoint https://api.846policebrutality.com/api/incidents?include=evidence
+    "#GeorgeFloyd",
+    "#JusticeForGeorgeFloyd",
+    "#AbolishThePolice",
+    "#BlackLivesMatter",
+    "tear gas",
 ]
 
 
@@ -65,9 +65,6 @@ def run_twitter_searches():
             if not submissions:
                 continue
             tweets.extend(submissions)
-            if len(tweets) > 5:
-                print("breaking out early for testing purposes")
-                break
     print("total_returned_tweets", total_returned_tweets)
     write_raw_submissions_to_csv("tweet_submissions.csv", tweets)
 
@@ -100,7 +97,7 @@ def convert_tweet(tweet: Dict[str, Any], processed_id_tweets: Set[int]):
     for media in tweet["extended_entities"]["media"]:
         if media["type"] != "video":
             continue
-        print("found video for tweet\n", tweet["text"], "\n")
+        print("found video for tweet: ", tweet["text"])
 
         media_url = get_media_url_from_variants(media["video_info"]["variants"])
         if not media_url:
