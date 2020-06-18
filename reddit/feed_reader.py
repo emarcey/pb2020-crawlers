@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 from praw.models import Submission as RedditSubmission
-from typing import Generator, List
+from typing import Generator
 
 from clients.laravel_client import bulk_upload_submissions
 from clients.reddit_client import make_new_reddit_client, stream_posts
@@ -30,8 +30,6 @@ def run_reddit_feed():
 def convert_reddit_submission(
     reddit_submissions: Generator[RedditSubmission, None, None]
 ) -> Generator[RawSubmission, None, None]:
-    raw_submissions: List[RawSubmission] = []
-
     for reddit_submission in reddit_submissions:
         if not reddit_post_is_relevant(reddit_submission, EXPLICIT_SUBREDDITS):
             continue
@@ -47,5 +45,3 @@ def convert_reddit_submission(
             submission_body="",
             id_submitter=reddit_submission.author.id,
         )
-    # @EM Why are we returning this empty list as well as yielding the Submissions?
-    return raw_submissions

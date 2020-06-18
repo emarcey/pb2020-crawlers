@@ -2,6 +2,7 @@ import tweepy
 from typing import Dict, List, Any, Set, Tuple
 from datetime import datetime
 import json
+import logging
 
 # from boto3 import client as boto_client
 
@@ -19,6 +20,9 @@ from common.config import (
     TWITTER_ACCESS_TOKEN_SECRET,
     READER_MODE,
 )
+
+
+logger = logging.getLogger(__name__)
 
 # from common.utils import write_raw_submissions_to_csv
 
@@ -39,7 +43,7 @@ QUERIES = [
     "#phillyprotests",
     "#chicagoprotests",
     "#houstonprotests",
-    "#pheonixProtests",
+    "#phoenixProtests",
     "#miamiProtests",
     "#dcprotests",
     "#WashingtonDCProtest",
@@ -83,7 +87,7 @@ def run_twitter_searches(since_id: int) -> int:
             if not submissions:
                 continue
             bulk_upload_submissions(submissions, TWITTER_LARAVEL_API_KEY, READER_MODE)
-    print("total_returned_tweets", total_returned_tweets)
+    logger.info(f"total_returned_tweets {total_returned_tweets}")
     log_last_processed_id(max_processed_id, max_processed_time_stamp)
     return max_processed_id
 
@@ -122,7 +126,7 @@ def convert_tweet(tweet: Dict[str, Any], processed_id_tweets: Set[int]) -> Tuple
     for media in tweet["extended_entities"]["media"]:
         if media["type"] != "video":
             continue
-        print("found video for tweet: ", tweet["text"])
+        logger.info(f"found video for tweet: {tweet['text']}")
         media_url = get_media_url_from_variants(media["video_info"]["variants"])
         if not media_url:
             continue
@@ -146,7 +150,6 @@ def is_tweet_relevant(tweet: Dict[str, Any]):
     media = tweet.get("extended_entities", {}).get("media")
     if media:
         return True
-    # TODO: do we need a regex like reddit or is that handled by search params
     return False
 
 
