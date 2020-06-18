@@ -5,7 +5,6 @@ import json
 
 # from boto3 import client as boto_client
 
-
 from common.data_classes import RawSubmission
 from common.enums import DataSource
 
@@ -14,17 +13,13 @@ from common.config import (
     TWITTER_LAST_RUN_FILENAME,
     # TWITTER_LAST_RUN_BUCKET,
     TWITTER_LARAVEL_API_KEY,
+    TWITTER_CONSUMER_KEY,
+    TWITTER_CONSUMER_SECRET,
+    TWITTER_ACCESS_TOKEN,
+    TWITTER_ACCESS_TOKEN_SECRET,
 )
 
 # from common.utils import write_raw_submissions_to_csv
-
-
-# input your credentials here
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_token_secret = ""
-
 
 QUERIES = [
     # recommended by freezman
@@ -63,10 +58,7 @@ QUERIES = [
 def run_twitter_searches(since_id: int) -> int:
     if not since_id:
         since_id = get_since_id_from_file()
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    api = tweepy.API(auth, wait_on_rate_limit=True)
-
+    api = build_tweepy_api()
     # tweets = []
     total_returned_tweets = 0
     processed_id_tweets = set()
@@ -93,6 +85,12 @@ def run_twitter_searches(since_id: int) -> int:
     print("total_returned_tweets", total_returned_tweets)
     log_last_processed_id(max_processed_id, max_processed_time_stamp)
     return max_processed_id
+
+
+def build_tweepy_api():
+    auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
+    auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+    return tweepy.API(auth, wait_on_rate_limit=True)
 
 
 def query_twitter(api, query: str, since_id: int):
