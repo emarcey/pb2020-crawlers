@@ -13,14 +13,14 @@ logger = logging.getLogger(__name__)
 
 
 if __name__ == "__main__":
+    twitter_since_id = None
     try:
         while True:
             logger.info(f"Job Starting.")
             if READER_MODE == "reddit":
                 run_reddit_rss_feed()
             elif READER_MODE == "twitter":
-                run_twitter_searches()
-                exit(0)
+                twitter_since_id = run_twitter_searches(twitter_since_id)
             else:
                 raise ValueError(f"READER_MODE {READER_MODE} not supported")
             logger.info(f"Job complete. Sleeping for {JOB_SLEEP_TIME_SECONDS} seconds.")

@@ -1,13 +1,23 @@
 import tweepy
-from typing import Dict, List, Any, Set
+from typing import Dict, List, Any, Set, Tuple
 from datetime import datetime
+import json
 
-# from IPython import embed
+# from boto3 import client as boto_client
 
 
 from common.data_classes import RawSubmission
 from common.enums import DataSource
-from common.utils import write_raw_submissions_to_csv
+
+from clients.laravel_client import bulk_upload_submissions
+from common.config import (
+    TWITTER_LAST_RUN_FILENAME,
+    # TWITTER_LAST_RUN_BUCKET,
+    TWITTER_LARAVEL_API_KEY,
+)
+
+# from common.utils import write_raw_submissions_to_csv
+
 
 # input your credentials here
 consumer_key = ""
@@ -45,28 +55,44 @@ QUERIES = [
     "#AbolishThePolice",
     "#BlackLivesMatter",
     "tear gas",
+    # Common occurrences
+    "#DefundThePolice",
 ]
 
 
-def run_twitter_searches():
+def run_twitter_searches(since_id: int) -> int:
+    if not since_id:
+        since_id = get_since_id_from_file()
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth, wait_on_rate_limit=True)
 
-    tweets = []
+    # tweets = []
     total_returned_tweets = 0
     processed_id_tweets = set()
+    max_processed_id = 0
+    max_processed_time_stamp = 0
     for query in QUERIES:
-        cursor = query_twitter(api, query, 1270867714505158656)
+        cursor = query_twitter(api, query, since_id)
         for resp in cursor:
             total_returned_tweets += 1
             tweet = resp._json
+            id_tweet = tweet["id"]
+            if id_tweet > max_processed_id:
+                max_processed_id = id_tweet
+                max_processed_time_stamp = tweet["created_at"]
+                # TODO: should we keep updating this file, so it is up to date if the job quits unexpectedly?
+                # pro: can pick up where we left off and avoid duplicates
+                # con: may miss hits from searches that were not yet performed
+                # log_last_processed_id(max_processed_id, max_processed_time_stamp)
+            # submissions is a list so we can handle single tweet with multiple media objects
             submissions, processed_id_tweets = convert_tweet(tweet, processed_id_tweets)
             if not submissions:
                 continue
-            tweets.extend(submissions)
+            bulk_upload_submissions(submissions, TWITTER_LARAVEL_API_KEY)
     print("total_returned_tweets", total_returned_tweets)
-    write_raw_submissions_to_csv("tweet_submissions.csv", tweets)
+    log_last_processed_id(max_processed_id, max_processed_time_stamp)
+    return max_processed_id
 
 
 def query_twitter(api, query: str, since_id: int):
@@ -75,7 +101,7 @@ def query_twitter(api, query: str, since_id: int):
     return tweepy.Cursor(api.search, q=query, lang="en", since_id=since_id, include_entities=True).items()
 
 
-def convert_tweet(tweet: Dict[str, Any], processed_id_tweets: Set[int]):
+def convert_tweet(tweet: Dict[str, Any], processed_id_tweets: Set[int]) -> Tuple[List[RawSubmission], Set[int]]:
     submissions = []
     # TODO: add "monetizable" logger. like, is somebody profiting off this shit?
     if not is_tweet_relevant(tweet):
@@ -98,7 +124,6 @@ def convert_tweet(tweet: Dict[str, Any], processed_id_tweets: Set[int]):
         if media["type"] != "video":
             continue
         print("found video for tweet: ", tweet["text"])
-
         media_url = get_media_url_from_variants(media["video_info"]["variants"])
         if not media_url:
             continue
@@ -137,6 +162,22 @@ def get_media_url_from_variants(variants: List[Dict[str, str]]):
             # TODO: multiple bitrates are available, does it matter which?
             return variant["url"]
     return None
+
+
+# TODO: hook up to s3 bucket
+def log_last_processed_id(last_processed_id: int, last_processed_time_stamp: str):
+    msg = {"last_processed_id": last_processed_id, "last_processed_time_stamp": last_processed_time_stamp}
+    with open(TWITTER_LAST_RUN_FILENAME, "w") as f:
+        f.write(json.dumps(msg))
+    # s3_client = boto_client("s3")
+    # response = s3_client.upload_file(TWITTER_LAST_RUN_FILENAME, TWITTER_LAST_RUN_BUCKET, TWITTER_LAST_RUN_FILENAME)
+    # return response
+
+
+def get_since_id_from_file():
+    with open(TWITTER_LAST_RUN_FILENAME, "r") as f:
+        d = json.load(f)
+    return d.get("last_processed_id")
 
 
 if __name__ == "__main__":
