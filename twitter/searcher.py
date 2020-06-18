@@ -17,6 +17,7 @@ from common.config import (
     TWITTER_CONSUMER_SECRET,
     TWITTER_ACCESS_TOKEN,
     TWITTER_ACCESS_TOKEN_SECRET,
+    READER_MODE,
 )
 
 # from common.utils import write_raw_submissions_to_csv
@@ -81,7 +82,7 @@ def run_twitter_searches(since_id: int) -> int:
             submissions, processed_id_tweets = convert_tweet(tweet, processed_id_tweets)
             if not submissions:
                 continue
-            bulk_upload_submissions(submissions, TWITTER_LARAVEL_API_KEY)
+            bulk_upload_submissions(submissions, TWITTER_LARAVEL_API_KEY, READER_MODE)
     print("total_returned_tweets", total_returned_tweets)
     log_last_processed_id(max_processed_id, max_processed_time_stamp)
     return max_processed_id
