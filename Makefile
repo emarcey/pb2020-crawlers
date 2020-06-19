@@ -2,6 +2,7 @@ IMAGE_NAME = "pb2020-content-reader"
 
 READER_MODE = "default"
 READER_MODE_REDDIT = "reddit"
+READER_MODE_TWITTER = "twitter"
 
 JOB_SLEEP_TIME_SECONDS="30"
 
@@ -29,6 +30,10 @@ run:
 run_reddit:
 	$(MAKE) build
 	$(MAKE) run READER_MODE=$(READER_MODE_REDDIT)
+
+run_twitter:
+	$(MAKE) build
+	$(MAKE) run READER_MODE=$(READER_MODE_TWITTER)
 
 unit:
 	$(MAKE) build
