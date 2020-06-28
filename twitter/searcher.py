@@ -27,6 +27,8 @@ logger = logging.getLogger(__name__)
 # from common.utils import write_raw_submissions_to_csv
 
 QUERIES = [
+    # May want to remove later on,
+    "#PrideMarch",
     # recommended by freezman
     "#bluefall",
     "#PoliceBrutality",
